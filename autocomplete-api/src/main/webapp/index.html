@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="ISO-8859-1">
+
+    <link rel="stylesheet" href="css/bootstrap-grid.css">
+    <link rel="stylesheet" href="css/bootstrap-grid.css.map">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css">
+    <link rel="stylesheet" href="css/bootstrap-reboot.css.map">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css.map">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse bg-inverse">
+        <a id="nav_bar" class="navbar-brand" href="#">
+            <img id="logo" src="" width="30" height="30" class="d-inline-block align-top" alt=""> B O O K . C O
+        </a>
+    </nav>
+   <div id="main_form"></div>
+</body>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/tether.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/autoComplete.js"></script>
+<script>
+    var searchBookFiring = "";
+    var searchFilmFiring = "";
+    
+</script>
+<script>
+    $(document).ready(function() {
+
+    	alert(document.URL.indexOf("#"));
+    	   if(document.URL.indexOf("#")==-1){
+    	        // Set the URL to whatever it was plus "#loaded".
+    	        
+    	        $.ajax({
+            	        type: 'GET',
+            	        url: '/Books' 
+            	    });
+            	 
+            	 $.ajax({
+         	        type: 'GET',
+         	        url: '/Films' 
+         	    });
+            	 
+    	        url = document.URL+"#loaded";
+    	        location = "#loaded";
+
+    	        //Reload the page using reload() method
+    	        location.reload(true);
+    	    }
+    	
+    	   $("#main_form").load("Search.html");
+    	   
+           $("#nav_bar").click(function() {
+
+               $("#main_form").load("Search.html");
+           });
+        
+
+    });
+</script>
+
+</html>

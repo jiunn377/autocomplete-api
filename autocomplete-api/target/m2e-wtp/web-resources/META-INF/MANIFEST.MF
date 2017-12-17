@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: AutoComplete api
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: SSJHYAP
+Implementation-Vendor-Id: io.autocomplete.springboot
+Build-Jdk: 1.8.0_111
+Implementation-URL: http://projects.spring.io/spring-boot/autocomplete
+ -api/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
