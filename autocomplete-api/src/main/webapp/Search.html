@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+
+<body>
 
     <div id="main_content">
         <!-- <h1 align="middle" style=" font-family: Comic Sans MS">BOOK SEARCH</h1> -->
@@ -22,111 +23,105 @@
     </div>
 </body>
 
-
 <script>
     $(document).ready(function() {
-	 
+
         $("#search_txb").keyup(function() {
-        	
-        	var val = $("#search_txb").val()
-        	var link = 'Books/' + val + '&' + val + '&' + val;
-        	
-        	var val = $("#search_txb").val()
-            if (val != null || val != ""){
+
+            var val = $("#search_txb").val()
+            var link = 'Books/' + val + '&' + val + '&' + val;
+
+            var val = $("#search_txb").val()
+            if (val != null || val != "") {
 
                 $.ajax({
-                type: 'GET',
-                url: link ,
-                success:  function callbackDataBook(data) {
-                	
-                    var result = "";
-                	var val = $("#search_txb").val()
-                	
-                    $('#data_result').html('');
-
-                    $.each(data, function(count, obj) {
-
-                        if (obj['author'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
-
-                            result += "<option value='" + obj['author'] + "'><div style'color:grey'>Book Author</div> </option>";
-
-                        } else if (obj['series'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
-
-                            result += "<option value='" + obj['series'] + "'><div style'color:grey'>Book Series</div> </option>";
-
-                        } else if (obj['name'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
-
-                            result += "<option value='" + obj['name'] + "'><div style'color:grey'>Book Name</div> </option>";
-
-                        }
-                        return count <= 10;
-
-                    });
-                    $('#data_result').append(result);
-                    
-
-                    var link = 'Films/' + val + '&' + val + '&' + val;
-                	
-                   
-                    $.ajax({
                     type: 'GET',
-                    url: link ,
-                    success:function callbackDataFilm(data) {
-                        	
-                            var result = "";
-                        	var val = $("#search_txb").val()
-                        	
-                         //   $('#data_result').html('');
+                    url: link,
+                    success: function callbackDataBook(data) {
 
-                            $.each(data, function(count, obj) {
+                        var result = "";
+                        var val = $("#search_txb").val()
 
-                                if (obj['id'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+                        $('#data_result').html('');
 
-                                    result += "<option value='" + obj['id'] + "'><div style'color:grey'>Book ID</div> </option>";
+                        $.each(data, function(count, obj) {
 
-                                } else if (obj['film'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+                            if (obj['author'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
 
-                                    result += "<option value='" + obj['film'] + "'><div style'color:grey'>Book Film</div> </option>";
+                                result += "<option value='" + obj['author'] + "'><div style'color:grey'>Book Author</div> </option>";
 
-                                } else if (obj['actor'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+                            } else if (obj['series'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
 
-                                    result += "<option value='" + obj['actor'] + "'><div style'color:grey'>Book Actor</div> </option>";
+                                result += "<option value='" + obj['series'] + "'><div style'color:grey'>Book Series</div> </option>";
 
-                                }
-                                return count <= 10;
+                            } else if (obj['name'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
 
-                            });
-                            $('#data_result').append(result);
-                        }
-                    
-                    });
-                }
-            });
-        	
-            
+                                result += "<option value='" + obj['name'] + "'><div style'color:grey'>Book Name</div> </option>";
+
+                            }
+                            return count <= 10;
+
+                        });
+                        $('#data_result').append(result);
+
+                        var link = 'Films/' + val + '&' + val + '&' + val;
+
+                        $.ajax({
+                            type: 'GET',
+                            url: link,
+                            success: function callbackDataFilm(data) {
+
+                                var result = "";
+                                var val = $("#search_txb").val()
+
+                                //   $('#data_result').html('');
+
+                                $.each(data, function(count, obj) {
+
+                                    if (obj['id'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+
+                                        result += "<option value='" + obj['id'] + "'><div style'color:grey'>Flim ID</div> </option>";
+
+                                    } else if (obj['film'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+
+                                        result += "<option value='" + obj['film'] + "'><div style'color:grey'>Flim Name</div> </option>";
+
+                                    } else if (obj['actor'].toString().toUpperCase().indexOf(val.toString().toUpperCase()) >= 0) {
+
+                                        result += "<option value='" + obj['actor'] + "'><div style'color:grey'>Flim Actor</div> </option>";
+
+                                    }
+                                    return count <= 10;
+
+                                });
+                                $('#data_result').append(result);
+                            }
+
+                        });
+                    }
+                });
+
             }
-            
-            
+
         });
 
         $("#search_btn").click(function() {
 
             var val = $("#search_txb").val()
             console.log(val);
-            if (val == null || val == ""){
-            	searchBookFiring = 'Books/';
+            if (val == null || val == "") {
+                searchBookFiring = 'Books/';
                 searchFilmFiring = 'Films/';
 
-            }else{
-            	
-	            searchBookFiring = 'Books/' + val + '&' + val + '&' + val;
-	            searchFilmFiring = 'Films/' + val + '&' + val + '&' + val;
+            } else {
+
+                searchBookFiring = 'Books/' + val + '&' + val + '&' + val;
+                searchFilmFiring = 'Films/' + val + '&' + val + '&' + val;
             }
             $("#main_content").load("SearchResult.html");
         });
-        
-    });
-       </script>
 
+    });
+</script>
 
 </html>
